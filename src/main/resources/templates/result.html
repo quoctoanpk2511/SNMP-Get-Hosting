@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Hosting</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+	</head>
+	<body>
+		<div class="header1">
+		  <h2 style="text-align: center;">Host Information</h2>
+		</div>
+		<div>
+			<div th:if="${check == true}">
+				<div class="form-input">
+				    <button id="btn1" class="btn btn-primary">Get Storage</button>
+				    &nbsp;
+				    <button id="btn2" class="btn btn-primary">Get Usage</button>
+				</div>
+				<table class="p">
+					<thead>
+						<tr>
+							<th>Index</th>
+							<th>Description</th>
+							<th>Storage Size(GB)</th>
+							<th>Storage Used(GB)</th>
+						</tr>
+					</thead>
+		            <tbody>
+						<tr th:each ="table : ${tables1}">
+			               <td th:utext="${table.index}">...</td>
+			               <td th:utext="${table.descr}">...</td>
+			               <td th:utext="${table.size}">...</td>
+			               <td th:utext="${table.used}">...</td>
+		            	</tr>
+		            </tbody>
+		            
+				</table>
+				<table class="q">
+					<thead>
+						<tr>
+							<th>Index</th>
+							<th>Name</th>
+							<!-- <th>ID</th> -->
+							<th>Path</th>
+							<!-- <th>Parameters</th> -->
+							<th>Type</th>
+							<th>Status</th>
+							<!-- <th>Priority</th> -->
+							<th>CPU</th>
+							<th>Memory(MB)</th>
+						</tr>
+					</thead>
+		            <tbody>
+						<tr th:each ="table : ${tables2}">
+			               <td th:utext="${table.index}">...</td>
+			               <td th:utext="${table.name}">...</td>
+			               <!-- <td th:utext="${table.id}">...</td> -->
+			               <td th:utext="${table.path}">...</td>
+			               <!-- <td th:utext="${table.param}">...</td> -->
+			               <td th:utext="${table.type}">...</td>
+			               <td th:utext="${table.status}">...</td>
+			               <!-- <td th:utext="${table.priority}">...</td> -->
+			               <td th:utext="${table.perfCpu}">...</td>
+			               <td th:utext="${table.perfMem}">...</td>
+		            	</tr>
+		            </tbody>
+		            
+				</table>
+			</div>
+			<div th:if="${check == false}">
+				<h3 style="color: red; text-align: center;">Something is wrong!!</h3>
+			</div>
+			<form th:action="@{/index}" method="GET">
+				<div class="form-input row">
+		    		<button type="submit" class="btn btn-primary btn-back">Back</button>
+		    	</div>
+			</form>
+		</div>
+	</body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<script>
+		$(".p").show();
+		$(".q").hide();
+	
+		$("#btn1").click(function(){
+			$(".p").show();
+			$(".q").hide();
+		});
+		
+		$("#btn2").click(function(){
+			  $(".p").hide();
+			  $(".q").show();
+		});
+	</script>
+</html>

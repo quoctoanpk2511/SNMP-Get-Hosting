@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Hosting</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+	</head>
+	<body>
+		<div class="header1">
+		  <h2 style="text-align: center;">Host Information</h2>
+		</div>
+		<div>
+			<form th:action="@{/result}" th:object="${abs}" method="POST">
+				<div class="form-input row">
+					Version:
+					<div class="col-sm-4">
+						<select class="form-control" name="version">
+							<option value="1">1</option>
+					        <option value="2c" selected="selected">2c</option>
+					        <option value="3">3</option>
+						</select>
+					</div>
+					&nbsp; Community:
+					<div class="col-sm-6">
+						<input type="text" class="form-control" placeholder="e.g public" name="community">
+					</div>
+		    	</div>
+		    	<div class="form-input row">
+		    		Address:
+					<div class="col-sm-11">
+						<input type="text" class="form-control" placeholder="e.g 127.0.0.1" name="host">
+					</div>
+		    	</div>
+		    	<div class="form-input row">
+		    		<button type="submit" class="btn btn-primary">Get Hosting</button>
+		    	</div>
+			</form>
+		</div>
+	</body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</html>
