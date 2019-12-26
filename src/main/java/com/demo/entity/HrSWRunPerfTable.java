@@ -10,7 +10,7 @@ public class HrSWRunPerfTable {
 	private String type;
 	private String status;
 	private String priority;
-	private String perfCpu;
+	private double perfCpu;
 	private double perfMem;
 	
 	public int getIndex() {
@@ -61,10 +61,10 @@ public class HrSWRunPerfTable {
 	public void setPriority(String priority) {
 		this.priority = priority;
 	}
-	public String getPerfCpu() {
+	public double getPerfCpu() {
 		return perfCpu;
 	}
-	public void setPerfCpu(String perfCpu) {
+	public void setPerfCpu(double perfCpu) {
 		this.perfCpu = perfCpu;
 	}
 	public double getPerfMem() {

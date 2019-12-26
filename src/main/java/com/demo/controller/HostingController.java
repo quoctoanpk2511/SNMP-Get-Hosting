@@ -23,12 +23,12 @@ public class HostingController {
 	
 	public static long BtoGB = 1024*1024*1024;
 	
-	@RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
-    public String input(Model model) {
-		return "index";
+	@RequestMapping(value = {"/", "/index1"}, method = RequestMethod.GET)
+    public String index(Model model) {
+		return "index1";
 	}
 	
-	@RequestMapping(value = "/result", method = RequestMethod.POST)
+	@RequestMapping(value = "/result1", method = RequestMethod.POST)
     public String show(Model model, @ModelAttribute AbstractSnmp abs) {
 		List<HrStorageTable> tables1 = new ArrayList<HrStorageTable>();
 		List<HrSWRunPerfTable> tables2 = new ArrayList<HrSWRunPerfTable>();
@@ -61,8 +61,6 @@ public class HostingController {
 		        if (o2 instanceof String[][]) {
 		            String[][] str = (String[][]) o2;
 		            String[][] str1 = (String[][]) o3;
-//		            double cpu = 0;
-//		            double ram = 0;
 		            for (int i = 0; i < str.length; i++) {
 		    			HrSWRunPerfTable table = new HrSWRunPerfTable();
 		    			table.setIndex(Integer.parseInt(str[i][0]));
@@ -73,16 +71,10 @@ public class HostingController {
 		    			table.setType(str[i][5]);
 		    			table.setStatus(str[i][6]);
 		    			table.setPriority(str[i][7]);
-//		    			table.setDescr(str[i][2]);
-//		    			table.setSize(Math.round(((Double.parseDouble(str[i][4])*Long.parseLong(str[i][3]))/BtoGB)*100.0)/100.0);
-//		    			table.setUsed(Math.round(((Double.parseDouble(str[i][5])*Long.parseLong(str[i][3]))/BtoGB)*100.0)/100.0);
-		    			table.setPerfCpu(str1[i][0]);
+		    			table.setPerfCpu(Math.round((Double.parseDouble(str1[i][0])/100)*100.0)/100.0);
 		    			table.setPerfMem(Math.round((Double.parseDouble(str1[i][1])/1024)*100.0)/100.0);
 		    			tables2.add(table);
-//		    			cpu = cpu + Double.parseDouble(str1[i][0]);
-//		    			ram = ram + Double.parseDouble(str1[i][1]);
 		    		}
-//		            Collections.sort(tables2);
 		            check = true;
 		            model.addAttribute("tables2", tables2);
 		            System.out.println("GET USAGE SUCCESS!");
@@ -90,10 +82,11 @@ public class HostingController {
 			} catch (Exception e) {
 				// TODO: handle exception
 				System.err.println("ERROR!");
+				return "error1";
 			}
 		}
 		model.addAttribute("check", check);
-        return "result";
+        return "result1";
     }
 	
 }

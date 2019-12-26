@@ -98,7 +98,7 @@ public class SnmpUtil {
 
   /**
    * @param variableBindings walk back result set
-   * @param lastIndex        以最后几位是索引值 默认是1位,s93是3位,需要从监控项的配置参数里获取
+   * @param lastIndex
    * @return
    */
   public static List<Map<String, Object>> getWalkList(Vector<VariableBinding> variableBindings, int lastIndex) {
